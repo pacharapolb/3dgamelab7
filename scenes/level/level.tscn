@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvhcayx88t8by"]
+
+[ext_resource type="PackedScene" uid="uid://vyj4tks2l6oo" path="res://scenes/background.tscn" id="1_3sk51"]
+[ext_resource type="Script" uid="uid://6hfsl133r27k" path="res://scenes/level/landing_pad.gd" id="1_ah44r"]
+[ext_resource type="PackedScene" uid="uid://d08b7xlee8xtd" path="res://scenes/player/player.tscn" id="1_j32y2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djncm"]
+albedo_color = Color(0.121569, 0.133333, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjlml"]
+albedo_color = Color(0.141176, 1, 0.145098, 1)
+
+[node name="Level" type="Node3D"]
+
+[node name="Floor" parent="." instance=ExtResource("1_3sk51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0523453, -4, 9.53674e-05)
+
+[node name="LaunchPad" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.2, 0)
+use_collision = true
+size = Vector3(2, 0.4, 2)
+material = SubResource("StandardMaterial3D_djncm")
+
+[node name="LandingPad" type="CSGBox3D" parent="." groups=["LandingPad"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.2, 0)
+use_collision = true
+size = Vector3(2, 0.4, 2)
+material = SubResource("StandardMaterial3D_xjlml")
+script = ExtResource("1_ah44r")
+file_path = "res://scenes/level/level2.tscn"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.978148, 0.207912, 0, -0.207912, 0.978148, 0, 5.8, 9.3)
+
+[node name="Player" parent="." instance=ExtResource("1_j32y2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.4, 0)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.96122, -0.341218)
+modulate = Color(0, 1, 1, 1)
+text = "นายพชรพล บัวจำรัส 663380283-5
+W เร่ง
+A ซ้าย
+D ขวา"
+font_size = 61

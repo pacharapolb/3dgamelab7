@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bty32rdcwatyo"]
+
+[ext_resource type="Script" uid="uid://6hfsl133r27k" path="res://scenes/level/landing_pad.gd" id="1_134pr"]
+[ext_resource type="PackedScene" uid="uid://d08b7xlee8xtd" path="res://scenes/player/player.tscn" id="2_ancuo"]
+[ext_resource type="PackedScene" uid="uid://vyj4tks2l6oo" path="res://scenes/background.tscn" id="3_jq0ft"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0lqpl"]
+albedo_color = Color(1, 1, 0.0980392, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djncm"]
+albedo_color = Color(0.121569, 0.133333, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjlml"]
+albedo_color = Color(0.141176, 1, 0.145098, 1)
+
+[node name="Level3" type="Node3D"]
+
+[node name="Obstacle" type="CSGBox3D" parent="." groups=["Hazard"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500567, 0)
+use_collision = true
+size = Vector3(1, 5, 2)
+material = SubResource("StandardMaterial3D_0lqpl")
+
+[node name="Obstacle2" type="CSGBox3D" parent="." groups=["Hazard"]]
+transform = Transform3D(1, 0, 0, 0, 0.998961, -0.0455722, 0, 0.0455722, 0.998961, 4.96394, 5.88439, 0)
+use_collision = true
+size = Vector3(1, 0.5, 2)
+material = SubResource("StandardMaterial3D_0lqpl")
+
+[node name="LaunchPad" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.2, 0)
+use_collision = true
+size = Vector3(2, 0.4, 2)
+material = SubResource("StandardMaterial3D_djncm")
+
+[node name="LandingPad" type="CSGBox3D" parent="." groups=["LandingPad"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.2, 0)
+use_collision = true
+size = Vector3(2, 0.4, 2)
+material = SubResource("StandardMaterial3D_xjlml")
+script = ExtResource("1_134pr")
+file_path = "res://scenes/level/level4.tscn"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.978148, 0.207912, 0, -0.207912, 0.978148, 0, 5.8, 9.3)
+
+[node name="Player" parent="." instance=ExtResource("2_ancuo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.4, 0)
+
+[node name="Floor" parent="." instance=ExtResource("3_jq0ft")]
